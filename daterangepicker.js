@@ -664,6 +664,9 @@
             if (cal.hasClass('left')) {
                 startDate = this.leftCalendar.calendar[row][col];
                 endDate = this.endDate;
+                if(this.startDate.isSame(startDate)){
+                    endDate = startDate;
+                }
                 if (typeof this.dateLimit === 'object') {
                     var maxDate = moment(startDate).add(this.dateLimit).startOf('day');
                     if (endDate.isAfter(maxDate)) {
@@ -673,6 +676,9 @@
             } else {
                 startDate = this.startDate;
                 endDate = this.rightCalendar.calendar[row][col];
+                if(this.endDate.isSame(endDate)){
+                    startDate = endDate;
+                }
                 if (typeof this.dateLimit === 'object') {
                     var minDate = moment(endDate).subtract(this.dateLimit).startOf('day');
                     if (startDate.isBefore(minDate)) {
@@ -711,8 +717,10 @@
 
             if (this.singleDatePicker)
                 this.clickApply();
-            else if(this.autoApply) 
+            else if(this.autoApply) {
 	        this.updateInputText();
+                this.updateFromControl();
+	    }
         },
 
         clickApply: function (e) {
