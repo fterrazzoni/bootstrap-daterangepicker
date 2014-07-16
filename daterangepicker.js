@@ -177,6 +177,9 @@
 
             if (typeof options.dateLimit === 'object')
                 this.dateLimit = options.dateLimit;
+                
+            if(options.autoApply) 
+	        this.autoApply = true;
 
             // update day names order to firstDay
             if (typeof options.locale === 'object') {
@@ -708,6 +711,8 @@
 
             if (this.singleDatePicker)
                 this.clickApply();
+            else if(this.autoApply) 
+	        this.updateInputText();
         },
 
         clickApply: function (e) {
