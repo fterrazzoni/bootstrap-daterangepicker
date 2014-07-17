@@ -115,6 +115,7 @@
             this.ranges = {};
 
             this.opens = 'right';
+            this.opensDirection = 'down';
             if (this.element.hasClass('pull-right'))
                 this.opens = 'left';
 
@@ -230,7 +231,10 @@
 
             if (typeof options.opens === 'string')
                 this.opens = options.opens;
-
+            
+            if (typeof options.opensDirection == 'string')
+                this.opensDirection = options.opensDirection;
+            
             if (typeof options.showWeekNumbers === 'boolean') {
                 this.showWeekNumbers = options.showWeekNumbers;
             }
@@ -362,7 +366,11 @@
                 left.removeClass('left').addClass('right');
                 right.removeClass('right').addClass('left');
             }
-
+            
+            if (this.opensDirection == 'up') {
+                this.container.addClass('up');
+            }
+            
             if (typeof options.ranges === 'undefined' && !this.singleDatePicker) {
                 this.container.addClass('show-calendar');
             }
@@ -470,10 +478,21 @@
                     left: this.parentEl.offset().left - this.parentEl.scrollLeft()
                 };
             }
-
-            if (this.opens == 'left') {
+	    if(this.opensDirection == 'down'){
                 this.container.css({
                     top: this.element.offset().top + this.element.outerHeight() - parentOffset.top,
+                    bottom: 'auto'
+                })
+            } else {
+		    console.log( this.container.height())
+                this.container.css({
+                    bottom: 'auto',
+		    top: this.element.offset().top - parentOffset.top - this.container.height() - 15
+                })
+            }
+            if (this.opens == 'left') {
+                this.container.css({
+                    //top: this.element.offset().top + this.element.outerHeight() - parentOffset.top,
                     right: $(window).width() - this.element.offset().left - this.element.outerWidth() - parentOffset.left,
                     left: 'auto'
                 });
@@ -485,7 +504,7 @@
                 }
             } else {
                 this.container.css({
-                    top: this.element.offset().top + this.element.outerHeight() - parentOffset.top,
+                   // top: this.element.offset().top + this.element.outerHeight() - parentOffset.top,
                     left: this.element.offset().left - parentOffset.left,
                     right: 'auto'
                 });

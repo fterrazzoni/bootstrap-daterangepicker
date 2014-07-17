@@ -254,3 +254,33 @@
 .daterangepicker th.month {
   width: auto;
 }
+
+.daterangepicker.opensleft.up:before {
+  top: auto;
+  bottom: -7px;
+  border-top: 7px solid #ccc;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+}
+
+.daterangepicker.opensleft.up:after {
+  top: auto;
+  bottom: -6px;
+  border-top: 6px solid #fff;
+  border-bottom: none;
+}
+
+.daterangepicker.opensright.up:before {
+  top: auto;
+  bottom: -7px;
+  border-top: 7px solid #ccc;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+}
+
+.daterangepicker.opensright.up:after {
+  top: auto;
+  bottom: -6px;
+  border-top: 6px solid #fff;
+  border-bottom: none;
+}
