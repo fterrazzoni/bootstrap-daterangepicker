@@ -739,6 +739,7 @@
             else if(this.autoApply) {
 	        this.updateInputText();
                 this.updateFromControl();
+		this.notify();
 	    }
         },
 
@@ -806,6 +807,7 @@
 	    if(this.autoApply) {
                 this.updateInputText();
                 this.updateFromControl();
+	        this.notify();
 	    }
         },
 
