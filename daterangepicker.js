@@ -802,6 +802,11 @@
             }
 
             this.updateCalendars();
+	    
+	    if(this.autoApply) {
+                this.updateInputText();
+                this.updateFromControl();
+	    }
         },
 
         updateCalendars: function () {
